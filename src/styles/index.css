@@ -1,5 +1,7 @@
-@plugin "daisyui";
 @import "tailwindcss";
+@plugin "daisyui" {
+  themes: all;
+}
 
 body {
   overflow: hidden;
