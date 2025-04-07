@@ -1,12 +1,4 @@
-import { useState } from "react";
-
 export function Header({ handleReset }: { handleReset: () => void }) {
-  const [wantsReset, setWantsReset] = useState(false);
-
-  function doPopUp() {
-    setWantsReset(true);
-  }
-
   return (
     <>
       <div className="navbar bg-primary shadow-sm">
@@ -35,9 +27,49 @@ export function Header({ handleReset }: { handleReset: () => void }) {
                     <a>Tech Stack</a>
                   </li>
                   <li>
-                    <button onClick={() => doPopUp()}>
+                    <button
+                      onClick={() => {
+                        const modal =
+                          (document.getElementById(
+                            "my_modal_1"
+                          ) as HTMLDialogElement) || null;
+                        if (modal) modal.showModal();
+                      }}
+                    >
                       <span className="text-red-600">Reset List</span>
                     </button>
+                    <dialog
+                      id="my_modal_1"
+                      className="modal items-center justify-center"
+                    >
+                      <div className="modal-box">
+                        <h3 className="text-lg text-center text-red-800 font-extrabold">
+                          WARNING
+                        </h3>
+                        <p className="py-4 font-sans">
+                          Are you <b>sure</b> you want to reset your list?
+                        </p>
+                        <span className="underline">
+                          This action cannot be undone!
+                        </span>
+                        <div className="modal-action">
+                          <form
+                            method="dialog"
+                            className="flex w-full justify-between"
+                          >
+                            <button
+                              className="btn btn-sm btn-primary"
+                              onClick={() => {
+                                handleReset();
+                              }}
+                            >
+                              Confirm
+                            </button>
+                            <button className="btn btn-sm">Cancel</button>
+                          </form>
+                        </div>
+                      </div>
+                    </dialog>
                   </li>
                 </ul>
               </details>
@@ -45,42 +77,6 @@ export function Header({ handleReset }: { handleReset: () => void }) {
           </ul>
         </div>
       </div>
-
-      {wantsReset && (
-        <div
-          role="alert"
-          className="alert fixed bottom-4 left-1/2 -translate-x-1/2 z-50"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            className="stroke-info h-6 w-6 shrink-0"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-            ></path>
-          </svg>
-          <span>Are you sure you want to reset the list?</span>
-          <div>
-            <button className="btn btn-sm" onClick={() => setWantsReset(false)}>
-              Cancel
-            </button>
-            <button
-              className="btn btn-sm btn-primary"
-              onClick={() => {
-                handleReset();
-                setWantsReset(false);
-              }}
-            >
-              Confirm
-            </button>
-          </div>
-        </div>
-      )}
     </>
   );
 }
