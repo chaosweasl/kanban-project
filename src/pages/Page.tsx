@@ -1,9 +1,13 @@
 import { Header } from "../components/Header";
 import { KanbanCard } from "../components/KanbanCard";
 
-export default function () {
+export default function Page() {
   function handleReset() {
-    console.log("Caca");
+    console.log("Resetted");
+  }
+
+  function handleDelete() {
+    console.log("Deleted from the page");
   }
 
   return (
@@ -17,6 +21,7 @@ export default function () {
           title="test title"
           description="caca test"
           defaultDate={new Date()}
+          onDelete={handleDelete}
         />
       </div>
     </div>
