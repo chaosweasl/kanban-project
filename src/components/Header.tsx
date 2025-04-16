@@ -2,9 +2,9 @@ export function Header({ handleReset }: { handleReset: () => void }) {
   return (
     <>
       <div className="navbar bg-primary shadow-sm">
-        <h1 className="flex text-xl ml-5">Kanban-Board</h1>
+        <h1 className="flex text-2xl ml-5">Kanban-Board</h1>
         <div className="flex-1 flex justify-center items-center w-full">
-          <h1 className="flex text-xl text-black font-semibold">
+          <h1 className="flex text-2xl text-black font-semibold">
             Welcome Guest!{" "}
             {/* change this to username when sign up page is done */}
           </h1>
@@ -12,19 +12,26 @@ export function Header({ handleReset }: { handleReset: () => void }) {
         <div className="flex-none">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <a>Log Out</a> {/* remove this if not signed in */}
+              <a>
+                <h2 className="text-xl text-black">Log Out</h2>
+              </a>{" "}
+              {/* remove this if not signed in */}
             </li>
             <li>
               <details>
-                <summary>More Actions</summary>
+                <summary>
+                  <h2 className="text-xl text-black">More Actions</h2>
+                </summary>
                 <ul className="bg-primary rounded-t-none p-2">
                   <li>
                     <a href="https://github.com/chaosweasl" target="_blank">
-                      My Github
+                      <h3 className="text-lg">My Github</h3>
                     </a>
                   </li>
                   <li>
-                    <a>Tech Stack</a>
+                    <a>
+                      <h3 className="text-lg">Tech Stack</h3>
+                    </a>
                   </li>
                   <li>
                     <button
@@ -36,7 +43,9 @@ export function Header({ handleReset }: { handleReset: () => void }) {
                         if (modal) modal.showModal();
                       }}
                     >
-                      <span className="text-red-600">Reset List</span>
+                      <span className="text-red-600 text-lg font-medium">
+                        Reset List
+                      </span>
                     </button>
                     <dialog
                       id="my_modal_1"
